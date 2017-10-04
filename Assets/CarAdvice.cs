@@ -7,38 +7,38 @@ public class CarAdvice
     public readonly static int TURN_RIGHT = 1;
     public readonly static int TURN_NONE = 0;
 
-    private bool shouldAccelerate;
+    private AdviceItem<bool> shouldAccelerate;
 
-    public bool ShouldAccelerate
+    public AdviceItem<bool> ShouldAccelerate
     {
         get { return shouldAccelerate; }
         set { shouldAccelerate = value; }
     }
-    private bool shouldReverse;
+    private AdviceItem<bool> shouldReverse;
 
-    public bool ShouldReverse
+    public AdviceItem<bool> ShouldReverse
     {
         get { return shouldReverse; }
         set { shouldReverse = value; }
     }
 
-    private bool shouldBrake;
+    private AdviceItem<bool> shouldBrake;
 
-    public bool ShouldBrake
+    public AdviceItem<bool> ShouldBrake
     {
         get { return shouldBrake; }
         set { shouldBrake = value; }
     }
 
-    private int turnDirection;
+    private AdviceItem<int> turnDirection;
 
-    public int TurnDirection
+    public AdviceItem<int> TurnDirection
     {
         get { return turnDirection; }
         set { turnDirection = value; }
     }
 
-    public CarAdvice(bool shouldAccelerate, bool shouldBrake, bool shouldReverse, int turnDirection)
+    public CarAdvice(AdviceItem<bool> shouldAccelerate, AdviceItem<bool> shouldBrake, AdviceItem<bool> shouldReverse, AdviceItem<int> turnDirection)
     {
         ShouldAccelerate = shouldAccelerate;
         ShouldReverse = shouldReverse;
@@ -46,33 +46,46 @@ public class CarAdvice
         TurnDirection = turnDirection;
     }
 
+    public CarAdvice(bool shouldAccelerate,bool shouldBrake, bool shouldReverse, int turnDirection)
+    {
+        ShouldAccelerate = new AdviceItem<bool>(false, shouldAccelerate);
+        ShouldReverse = new AdviceItem<bool>(false, shouldReverse);
+        ShouldBrake = new AdviceItem<bool>(false, shouldBrake);
+        TurnDirection = new AdviceItem<int>(false, turnDirection);
+    }
 
+    public void Combine(CarAdvice other)
+    {
+        if (other.ShouldAccelerate.UseAdvice)
+            ShouldAccelerate = other.ShouldAccelerate;
+        if (other.ShouldBrake.UseAdvice)
+            ShouldBrake = other.ShouldBrake;
+        if (other.ShouldReverse.UseAdvice)
+            ShouldReverse = other.ShouldReverse;
+        if (other.TurnDirection.UseAdvice)
+            TurnDirection = other.turnDirection;
+    }
 
 }
 
-public class Tuple<Boolean, T2>
+public class AdviceItem<T2> //Use advice, value
 {
     public bool UseAdvice { get; private set; }
 
     public T2 Second { get; private set; }
 
-    internal Tuple(bool first, T2 second)
+    internal AdviceItem(bool first, T2 second)
     {
         UseAdvice = first;
         Second = second;
     }
 }
 
-
-/**
-
-
-public static class Tuple
+public static class AdviceItem
 {
-    public static Tuple<T1, T2> New<T1, T2>(T1 first, T2 second)
+    public static AdviceItem<T2> New<T2>(bool first, T2 second)
     {
-        var tuple = new Tuple<T1, T2>(first, second);
+        var tuple = new AdviceItem<T2>(first, second);
         return tuple;
     }
 }
-*/

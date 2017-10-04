@@ -24,14 +24,14 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
 
         if (finalAdvice != null)
         {
-            if (finalAdvice.ShouldAccelerate)
+            if (finalAdvice.ShouldAccelerate.Second)
                 c.Accelerate(maxTorqueFw);
-            if (finalAdvice.ShouldBrake)
+            if (finalAdvice.ShouldBrake.Second)
                 c.Brake(maxTorqueBrake);
-            if (finalAdvice.ShouldReverse)
+            if (finalAdvice.ShouldReverse.Second)
                 c.Accelerate(-maxTorqueBw);
 
-            c.Turn(finalAdvice.TurnDirection * maxSteerAngle);
+            c.Turn(finalAdvice.TurnDirection.Second * maxSteerAngle);
         }
 
     }
