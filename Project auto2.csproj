@@ -85,6 +85,7 @@
     <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\AutonomousDriveBehaviour.cs" />
     <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\PlayerDriveBehaviour.cs" />
     <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\AbstractDriveBehaviour.cs" />
+    <Compile Include="Assets\PositionHelper.cs" />
     <Compile Include="Assets\SensorBehaviour\RadarSensorBehaviour.cs" />
     <Compile Include="Assets\Sensors\AbstractSensor.cs" />
     <Compile Include="Assets\Sensors\Radar.cs" />

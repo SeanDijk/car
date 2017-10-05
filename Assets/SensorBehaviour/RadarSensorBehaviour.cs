@@ -39,31 +39,31 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
 
         bool objectInFrontOfCar = false;
 
+
         for (int i = 0; i < currentVisableColliders.Count; i++)
         {
             var collider = currentVisableColliders[i];
 
-            var position = CheckPosition(car, collider);
-            Debug.Log("Position = " + position.ToString());
-            if (position == POSITION_FRONT)
+            var position = PositionHelper.GetRelativePosition(car.transform, collider);
+            if (position == PositionHelper.POSITION_FRONT)
             {
                 objectInFrontOfCar = true;
             }
         }
 
-        return new CarAdvice(!objectInFrontOfCar, objectInFrontOfCar, false, 0);
+        if (objectInFrontOfCar)
+        {
+            return new CarAdvice(
+                new AdviceItem<int>(true, CarAdvice.BRAKE),
+                new AdviceItem<int>(false, 0)
+                );
+        }
+        //This basicly isnt used since the advice for all items is false
+        return new CarAdvice(CarAdvice.ACCELERATE_FW, 0);
     }
 
-    private static int POSITION_FRONT_LEFT = 1;
-    private static int POSITION_FRONT = 2;
-    private static int POSITION_FRONT_RIGHT = 3;
-    private static int POSITION_LEFT= 4;
-    private static int POSITION_RIGHT = 5;
-    private static int POSITION_REAR_LEFT = 6;
-    private static int POSITION_REAR = 7;
-    private static int POSITION_REAR_RIGHT = 8;
-    private static int UNKOWN = 9;
 
+    /*
     private int CheckPosition(Car car, Collider collider)
     {
         Vector3 directionToTarget = car.transform.position - collider.transform.position;
@@ -74,17 +74,18 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
 
         if (calculatedAngle > 90) {
             Debug.Log("target is behind me");
-            return POSITION_REAR;
+            return PositionHelper.POSITION_REAR;
         }
 
         else if (calculatedAngle <= 90) {
             Debug.Log("target is infront");
-            return POSITION_FRONT;
+            return PositionHelper.POSITION_FRONT;
         }
 
 
-        return UNKOWN;
+        return PositionHelper.UNKOWN;
     }
+    */
 }
 
 

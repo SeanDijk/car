@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class Car : MonoBehaviour {
     //private static float MAX_TORQUE_FW = 500f;
-    private static float MAX_TORQUE_FW = 250f;
+    private static float MAX_TORQUE_FW = 500f;
     private static float MAX_TORQUE_BW = 250F;
 
-    private static float MAX_TORQUE_BRAKE = MAX_TORQUE_FW;
+    private static float MAX_TORQUE_BRAKE = 4f*MAX_TORQUE_FW;
 
     private static float MAX_STEER_ANGLE = 45f;
 
@@ -91,6 +91,7 @@ public class Car : MonoBehaviour {
         for (int i = 0; i < wheelColliders.Length; i++)
         {
             wheelColliders[i].motorTorque = -torque;
+            wheelColliders[i].brakeTorque = 0;
         }
     }
 
@@ -98,6 +99,7 @@ public class Car : MonoBehaviour {
     {
         for (int i = 0; i < wheelColliders.Length; i++)
         {
+            //wheelColliders[i].motorTorque = 0;
             wheelColliders[i].brakeTorque = torque;
         }
     }

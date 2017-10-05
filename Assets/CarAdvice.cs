@@ -3,33 +3,22 @@ using UnityEditor;
 
 public class CarAdvice
 {
-    public readonly static int TURN_LEFT = -1;
-    public readonly static int TURN_RIGHT = 1;
-    public readonly static int TURN_NONE = 0;
+    public const int TURN_LEFT = -1;
+    public const int TURN_RIGHT = 1;
+    public const int TURN_NONE = 0;
 
-    private AdviceItem<bool> shouldAccelerate;
+    public const int ACCELERATE_FW = 1;
+    public const int ACCELERATE_BW = -1;
+    public const int BRAKE = 0;
 
-    public AdviceItem<bool> ShouldAccelerate
+    private AdviceItem<int> moveType;
+
+    public AdviceItem<int> MoveType
     {
-        get { return shouldAccelerate; }
-        set { shouldAccelerate = value; }
+        get { return moveType; }
+        set { moveType = value; }
     }
-    private AdviceItem<bool> shouldReverse;
-
-    public AdviceItem<bool> ShouldReverse
-    {
-        get { return shouldReverse; }
-        set { shouldReverse = value; }
-    }
-
-    private AdviceItem<bool> shouldBrake;
-
-    public AdviceItem<bool> ShouldBrake
-    {
-        get { return shouldBrake; }
-        set { shouldBrake = value; }
-    }
-
+    
     private AdviceItem<int> turnDirection;
 
     public AdviceItem<int> TurnDirection
@@ -38,30 +27,22 @@ public class CarAdvice
         set { turnDirection = value; }
     }
 
-    public CarAdvice(AdviceItem<bool> shouldAccelerate, AdviceItem<bool> shouldBrake, AdviceItem<bool> shouldReverse, AdviceItem<int> turnDirection)
+    public CarAdvice(AdviceItem<int> moveType, AdviceItem<int> turnDirection)
     {
-        ShouldAccelerate = shouldAccelerate;
-        ShouldReverse = shouldReverse;
-        ShouldBrake = shouldBrake;
+        MoveType = moveType;
         TurnDirection = turnDirection;
     }
 
-    public CarAdvice(bool shouldAccelerate,bool shouldBrake, bool shouldReverse, int turnDirection)
+    public CarAdvice(int moveType, int turnDirection)
     {
-        ShouldAccelerate = new AdviceItem<bool>(false, shouldAccelerate);
-        ShouldReverse = new AdviceItem<bool>(false, shouldReverse);
-        ShouldBrake = new AdviceItem<bool>(false, shouldBrake);
+        MoveType = new AdviceItem<int>(false, moveType);
         TurnDirection = new AdviceItem<int>(false, turnDirection);
     }
 
     public void Combine(CarAdvice other)
     {
-        if (other.ShouldAccelerate.UseAdvice)
-            ShouldAccelerate = other.ShouldAccelerate;
-        if (other.ShouldBrake.UseAdvice)
-            ShouldBrake = other.ShouldBrake;
-        if (other.ShouldReverse.UseAdvice)
-            ShouldReverse = other.ShouldReverse;
+        if (other.MoveType.UseAdvice)
+            MoveType = other.MoveType;
         if (other.TurnDirection.UseAdvice)
             TurnDirection = other.turnDirection;
     }
