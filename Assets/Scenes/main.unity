@@ -984,12 +984,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 178082117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e8556523ef2ce46a6af1d8d542fc5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 651312642}
+  checkpointBox: {fileID: 2111061941}
 --- !u!1 &221215239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,6 +2590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 651312642}
+  checkpointBox: {fileID: 2111061941}
 --- !u!1 &737613485
 GameObject:
   m_ObjectHideFlags: 0
@@ -7181,7 +7183,7 @@ GameObject:
   - component: {fileID: 2111061939}
   - component: {fileID: 2111061941}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7242,6 +7244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70db2f5cbe981d943bb8ba2d7bc39c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointList: []
 --- !u!33 &2111061942
 MeshFilter:
   m_ObjectHideFlags: 0
