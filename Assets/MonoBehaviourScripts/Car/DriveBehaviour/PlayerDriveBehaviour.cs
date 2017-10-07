@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System;
 
 public class PlayerDriveBehaviour : AbstractDriveBehaviour
 {
@@ -12,4 +13,14 @@ public class PlayerDriveBehaviour : AbstractDriveBehaviour
         c.Turn(finalAngle);
         c.Accelerate(accelerate * maxTorqueFw);
     }
+    public override void goToNewPosition(Car c, float x, float y, float z)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void startVector(Car c, float x, float y, float z)
+    {
+        throw new NotImplementedException();
+    }
+
 }

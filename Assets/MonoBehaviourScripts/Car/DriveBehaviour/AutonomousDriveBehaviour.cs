@@ -1,14 +1,26 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using System;
 
 public class AutonomousDriveBehaviour : AbstractDriveBehaviour
 {
+    Vector3 newPosition;
+    CarAdvice moveTowardsAdvice;
+    public override void startVector(Car c, float x, float y, float z)
+    {
+        newPosition = new Vector3(-85, c.transform.position.y, -100);
+    }
+    public override void goToNewPosition(Car c, float x, float y, float z)
+    {
+        newPosition = new Vector3(-150, c.transform.position.y, -100);
+    }
     public override void FixedUpdate(Car c, float maxTorqueFw, float maxTorqueBw, float maxTorqueBrake, float maxSteerAngle, AbstractSensorBehaviour[] sensorBehaviours)
     {
+        Debug.Log(newPosition.x);
         //TODO take multple sensorsbehaveiours into account
         CarAdvice finalAdvice = null;
         CarAdvice sensorAdvice = null;
-        CarAdvice moveTowardsAdvice = MoveTowards(c, new Vector3(-85, c.transform.position.y, -100));
+        moveTowardsAdvice = MoveTowards(c, newPosition);
         for (int i = 0; i < sensorBehaviours.Length; i++)
         {
             var sensorBehaviour = sensorBehaviours[i];
