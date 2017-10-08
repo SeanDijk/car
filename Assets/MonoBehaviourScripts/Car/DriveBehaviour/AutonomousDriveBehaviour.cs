@@ -21,6 +21,7 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
         CarAdvice finalAdvice = null;
         CarAdvice sensorAdvice = null;
         moveTowardsAdvice = MoveTowards(c, newPosition);
+
         for (int i = 0; i < sensorBehaviours.Length; i++)
         {
             var sensorBehaviour = sensorBehaviours[i];
@@ -28,22 +29,26 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
             sensorAdvice = carAdvice;
         }
         finalAdvice = moveTowardsAdvice;
-        finalAdvice.ShouldBrake = sensorAdvice.ShouldBrake;
-        finalAdvice.ShouldAccelerate = sensorAdvice.ShouldAccelerate;
+
+        if (sensorAdvice != null)
+            finalAdvice.Combine(sensorAdvice);
+
 
         Debug.Log(finalAdvice);
 
 
         if (finalAdvice != null)
         {
-            if (finalAdvice.ShouldAccelerate)
-                c.Accelerate(maxTorqueFw);
-            if (finalAdvice.ShouldBrake)
-                c.Brake(maxTorqueBrake);
-            if (finalAdvice.ShouldReverse)
-                c.Accelerate(-maxTorqueBw);
+            int movetype = finalAdvice.MoveType.Second;
+            Debug.Log("movetype " + movetype);
+            switch (movetype)
+            {
+                case CarAdvice.ACCELERATE_FW: c.Accelerate(maxTorqueFw); break;
+                case CarAdvice.ACCELERATE_BW: c.Accelerate(-maxTorqueBw); break;
+                case CarAdvice.BRAKE: c.Brake(maxTorqueBrake); break;
+            }
 
-            c.Turn(finalAdvice.TurnDirection * maxSteerAngle);
+            c.Turn(finalAdvice.TurnDirection.Second * maxSteerAngle);
         }
 
     }
@@ -52,12 +57,21 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
     {
 
         var carPos = c.transform.position;
-        float angleTowardsPosition = GetAngleTowardsPosition(c, endPos);
+        float angleTowardsPosition = PositionHelper.GetAngleTowardsPosition(c.transform, endPos);
 
         var isInfront = IsPositionInFrontOfCar(angleTowardsPosition);
         var turnDirection = GetTurnDirection(c, endPos);
         var isCloseToTarget = IsCloseToTarget(c, endPos);
-        return new CarAdvice(isInfront, isCloseToTarget, !isInfront, turnDirection);
+
+
+        var movetype = CarAdvice.ACCELERATE_FW;
+        if (!isInfront)
+            movetype = CarAdvice.ACCELERATE_BW;
+        if (isCloseToTarget)
+            movetype = CarAdvice.BRAKE;
+
+        return new CarAdvice(movetype, turnDirection);
+
 
 
     }
@@ -68,12 +82,7 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
     private bool IsCloseToTarget(Car c, Vector3 pos)
     {
         //TODO should do a calculation with velocity and such
-        return Vector3.Distance(c.transform.position, pos) < 20f;
-    }
-    private float GetAngleTowardsPosition(Car c, Vector3 pos)
-    {
-        Vector3 directionToTarget = c.transform.position - pos;
-        return Vector3.Angle(c.transform.forward, directionToTarget);
+        return Vector3.Distance(c.transform.position, pos) < 10f;
     }
     private int GetTurnDirection(Car c, Vector3 pos) //dont turn = 0 left = -1 right =1
     {
