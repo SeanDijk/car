@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delft in 3D", "Assembly-CSharp-firstpass.csproj", "{EC9852B4-DFD7-8AF1-646A-14B26707373E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delft in 3D", "Assembly-CSharp-Editor-firstpass.csproj", "{2AC4F4C8-7B9D-E74D-1ECA-6675390C8541}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC9852B4-DFD7-8AF1-646A-14B26707373E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC9852B4-DFD7-8AF1-646A-14B26707373E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC9852B4-DFD7-8AF1-646A-14B26707373E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9852B4-DFD7-8AF1-646A-14B26707373E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC4F4C8-7B9D-E74D-1ECA-6675390C8541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC4F4C8-7B9D-E74D-1ECA-6675390C8541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC4F4C8-7B9D-E74D-1ECA-6675390C8541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC4F4C8-7B9D-E74D-1ECA-6675390C8541}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
