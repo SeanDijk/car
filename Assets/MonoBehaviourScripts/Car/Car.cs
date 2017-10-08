@@ -13,6 +13,7 @@ public class Car : MonoBehaviour {
     private static float MAX_STEER_ANGLE = 45f;
 
     private AbstractDriveBehaviour driveBehaviour = new AutonomousDriveBehaviour();
+    
     //private DriveBehaviour driveBehaviour = new PlayerDriveBehaviour();
 
     [Header("General")]
@@ -48,7 +49,7 @@ public class Car : MonoBehaviour {
         //Change the center of mass, so the car doesnt flip while turning
         mRigidbody = GetComponent<Rigidbody>();
         mRigidbody.centerOfMass = centerOfMass.localPosition;
-
+        driveBehaviour.startVector(this, -85f, 0f, -100f);
         sensorBehaviours[0] = radarSensorBehaviour;
 
 	}
@@ -64,6 +65,7 @@ public class Car : MonoBehaviour {
     {
         driveBehaviour.FixedUpdate(this, MAX_TORQUE_FW, MAX_TORQUE_BW, MAX_TORQUE_BRAKE, MAX_STEER_ANGLE, sensorBehaviours);        
     }
+
 
     /*
      * Turns the front wheels.
@@ -102,6 +104,20 @@ public class Car : MonoBehaviour {
             //wheelColliders[i].motorTorque = 0;
             wheelColliders[i].brakeTorque = torque;
         }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Name: " + other.gameObject.ToString());
+        driveBehaviour.goToNewPosition(this, -50f, 1f, 50f);
+
+    }
+    void OnTriggerStay(Collider other)
+    {
+
+    }
+    void OnTriggerExit(Collider other)
+    {
+
     }
 }
 
