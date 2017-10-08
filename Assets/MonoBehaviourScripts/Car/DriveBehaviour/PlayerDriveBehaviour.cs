@@ -13,7 +13,7 @@ public class PlayerDriveBehaviour : AbstractDriveBehaviour
         c.Turn(finalAngle);
         c.Accelerate(accelerate * maxTorqueFw);
     }
-    public override void goToNewPosition(Car c, float x, float y, float z)
+    public override void goToNewPosition(Car c, Vector3 newVector)
     {
         throw new NotImplementedException();
     }

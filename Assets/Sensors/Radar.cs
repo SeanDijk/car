@@ -19,11 +19,17 @@ public class Radar : AbstractSensor {
 
     private void OnTriggerEnter(Collider other)
     {
-        myListener.OnTriggerEnter(other);
+        if (other.gameObject.name != "CheckPoint")
+        {
+            myListener.OnTriggerEnter(other);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        myListener.OnTriggerExit(other);
+        if (other.gameObject.name != "CheckPoint")
+        {
+            myListener.OnTriggerExit(other);
+        }
     }
 }

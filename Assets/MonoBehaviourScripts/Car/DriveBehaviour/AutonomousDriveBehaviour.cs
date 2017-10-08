@@ -10,9 +10,9 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
     {
         newPosition = new Vector3(-85, c.transform.position.y, -100);
     }
-    public override void goToNewPosition(Car c, float x, float y, float z)
+    public override void goToNewPosition(Car c, Vector3 newVector)
     {
-        newPosition = new Vector3(-150, c.transform.position.y, -100);
+        newPosition = newVector;
     }
     public override void FixedUpdate(Car c, float maxTorqueFw, float maxTorqueBw, float maxTorqueBrake, float maxSteerAngle, AbstractSensorBehaviour[] sensorBehaviours)
     {

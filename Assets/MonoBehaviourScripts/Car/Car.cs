@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Car : MonoBehaviour {
+public class Car : MonoBehaviour
+{
     //private static float MAX_TORQUE_FW = 500f;
     private static float MAX_TORQUE_FW = 500f;
     private static float MAX_TORQUE_BW = 250F;
@@ -13,7 +14,7 @@ public class Car : MonoBehaviour {
     private static float MAX_STEER_ANGLE = 45f;
 
     private AbstractDriveBehaviour driveBehaviour = new AutonomousDriveBehaviour();
-    
+
     //private DriveBehaviour driveBehaviour = new PlayerDriveBehaviour();
 
     [Header("General")]
@@ -44,18 +45,20 @@ public class Car : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         //Change the center of mass, so the car doesnt flip while turning
         mRigidbody = GetComponent<Rigidbody>();
         mRigidbody.centerOfMass = centerOfMass.localPosition;
         driveBehaviour.startVector(this, -85f, 0f, -100f);
         sensorBehaviours[0] = radarSensorBehaviour;
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         UpdateMeshesPositions();
     }
     /*
@@ -63,7 +66,7 @@ public class Car : MonoBehaviour {
      */
     private void FixedUpdate()
     {
-        driveBehaviour.FixedUpdate(this, MAX_TORQUE_FW, MAX_TORQUE_BW, MAX_TORQUE_BRAKE, MAX_STEER_ANGLE, sensorBehaviours);        
+        driveBehaviour.FixedUpdate(this, MAX_TORQUE_FW, MAX_TORQUE_BW, MAX_TORQUE_BRAKE, MAX_STEER_ANGLE, sensorBehaviours);
     }
 
 
@@ -105,19 +108,10 @@ public class Car : MonoBehaviour {
             wheelColliders[i].brakeTorque = torque;
         }
     }
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Name: " + other.gameObject.ToString());
-        driveBehaviour.goToNewPosition(this, -50f, 1f, 50f);
 
-    }
-    void OnTriggerStay(Collider other)
+    public void ChangeDirection(Vector3 newVector) // Changes direction of the car.
     {
-
-    }
-    void OnTriggerExit(Collider other)
-    {
-
+        driveBehaviour.goToNewPosition(this, newVector);
     }
 }
 

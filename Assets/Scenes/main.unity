@@ -943,6 +943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 178082118}
   - component: {fileID: 178082119}
+  - component: {fileID: 178082120}
   m_Layer: 0
   m_Name: CarBoxCollider
   m_TagString: Untagged
@@ -957,9 +958,9 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 178082117}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.43, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.43000007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.8078731}
   m_Children: []
   m_Father: {fileID: 1358410971}
   m_RootOrder: 1
@@ -977,6 +978,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.1, y: 3, z: 7.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &178082120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 178082117}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e8556523ef2ce46a6af1d8d542fc5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 651312642}
+  checkpointBox: {fileID: 2111061941}
 --- !u!1 &221215239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1374,7 @@ Transform:
   - {fileID: 768074569}
   - {fileID: 1757563328}
   m_Father: {fileID: 1358410971}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &275693713
 Animator:
@@ -2481,6 +2495,102 @@ Transform:
   m_Father: {fileID: 1864115151}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &734974030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 734974031}
+  - component: {fileID: 734974034}
+  - component: {fileID: 734974033}
+  - component: {fileID: 734974032}
+  - component: {fileID: 734974035}
+  m_Layer: 0
+  m_Name: CheckpointCollisionChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &734974031
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734974030}
+  m_LocalRotation: {x: -0, y: -0.019807411, z: -0, w: 0.99980384}
+  m_LocalPosition: {x: 0.13000043, y: 0.16977, z: 0.11000183}
+  m_LocalScale: {x: 3.1485097, y: 3.1485076, z: 6.3329916}
+  m_Children: []
+  m_Father: {fileID: 1358410971}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -2.2700002, z: 0}
+--- !u!23 &734974032
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734974030}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &734974033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734974030}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &734974034
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734974030}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &734974035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734974030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e8556523ef2ce46a6af1d8d542fc5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 651312642}
+  checkpointBox: {fileID: 2111061941}
 --- !u!1 &737613485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,7 +2891,7 @@ Transform:
   m_Children:
   - {fileID: 1232908661}
   m_Father: {fileID: 1358410971}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &844717578
 GameObject:
@@ -4396,6 +4506,7 @@ Transform:
   - {fileID: 1258533294}
   - {fileID: 178082118}
   - {fileID: 611130048}
+  - {fileID: 734974031}
   - {fileID: 843017477}
   - {fileID: 275693712}
   m_Father: {fileID: 0}
@@ -7072,7 +7183,7 @@ GameObject:
   - component: {fileID: 2111061939}
   - component: {fileID: 2111061941}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7133,6 +7244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70db2f5cbe981d943bb8ba2d7bc39c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointList: []
 --- !u!33 &2111061942
 MeshFilter:
   m_ObjectHideFlags: 0
