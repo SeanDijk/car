@@ -5,21 +5,19 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E178FB85-8661-6DA1-5826-5730BAEA3687}</ProjectGuid>
+    <ProjectGuid>{368CAB55-51A2-EDD9-D370-6093371E2880}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.1.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -57,11 +55,23 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
@@ -72,82 +82,48 @@
     <Reference Include="UnityEngine.Timeline">
       <HintPath>Library\UnityAssemblies\UnityEngine.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Timeline">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CarAdvice.cs" />
-    <Compile Include="Assets\CarCheckpointCollision.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\FirstPersonCharacter\Scripts\RigidbodyFirstPersonController.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\RollerBall\Scripts\Ball.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\RollerBall\Scripts\BallUserControl.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\ThirdPersonCharacter\Scripts\AICharacterControl.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\MobileControlRig.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\TiltInput.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\TouchPad.cs" />
-    <Compile Include="Assets\Map\Standard Assets\CrossPlatformInput\Scripts\VirtualInput.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water\Water\Scripts\Displace.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water\Water\Scripts\MeshContainer.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water\Water\Scripts\PlanarReflection.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water\Water\Scripts\SpecularLighting.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water\Water\Scripts\Water.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water\Water\Scripts\WaterBase.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Environment\Water\Water\Scripts\WaterTile.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\ActivateTrigger.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\AlphaButtonClickMask.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\AutoMobileShaderSwitch.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\AutoMoveAndRotate.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\CameraRefocus.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\CurveControlledBob.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\DragRigidbody.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\DynamicShadowSettings.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\EventSystemChecker.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\FollowTarget.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\ForcedReset.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\FOVKick.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\FPSCounter.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\LerpControlledBob.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\ObjectResetter.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\ParticleSystemDestroyer.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\PlatformSpecificContent.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\SimpleActivatorMenu.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\SimpleMouseRotator.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\SmoothFollow.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\TimedObjectActivator.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\TimedObjectDestructor.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\WaypointCircuit.cs" />
-    <Compile Include="Assets\Map\Standard Assets\Utility\WaypointProgressTracker.cs" />
-    <Compile Include="Assets\MonoBehaviourScripts\Car\Car.cs" />
-    <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\AbstractDriveBehaviour.cs" />
-    <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\AutonomousDriveBehaviour.cs" />
-    <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\PlayerDriveBehaviour.cs" />
-    <Compile Include="Assets\MonoBehaviourScripts\Obstacles\MovingObstacle.cs" />
-    <Compile Include="Assets\OnTriggerScript.cs" />
-    <Compile Include="Assets\PositionHelper.cs" />
-    <Compile Include="Assets\SensorBehaviour\AbstractSensorBehaviour.cs" />
-    <Compile Include="Assets\SensorBehaviour\LidarSensorBehaviour.cs" />
-    <Compile Include="Assets\SensorBehaviour\RadarSensorBehaviour.cs" />
-    <Compile Include="Assets\Sensors\AbstractSensor.cs" />
-    <Compile Include="Assets\Sensors\Lidar.cs" />
-    <Compile Include="Assets\Sensors\Radar.cs" />
+    <ProjectReference Include="Project auto2.csproj">
+      <Project>{E178FB85-8661-6DA1-5826-5730BAEA3687}</Project>
+      <Name>Project auto2</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Map\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
