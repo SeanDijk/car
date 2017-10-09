@@ -8,7 +8,7 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
     CarAdvice moveTowardsAdvice;
     public override void startVector(Car c, float x, float y, float z)
     {
-        newPosition = new Vector3(-85, c.transform.position.y, -100);
+        newPosition = new Vector3(-150, c.transform.position.y, 30);
     }
     public override void goToNewPosition(Car c, Vector3 newVector)
     {

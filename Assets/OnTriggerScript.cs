@@ -8,12 +8,12 @@ public class OnTriggerScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         // Adding the checkpoints to the list
-        checkpointList.Add(new Vector3(-60f, -2.74f, -120f));
+        /*checkpointList.Add(new Vector3(-60f, -2.74f, -120f));
         checkpointList.Add(new Vector3(-40f, -2.74f, -150f));
         checkpointList.Add(new Vector3(-20f, -2.74f, -180f));
         checkpointList.Add(new Vector3(-5f, -2.74f, -220f));
         checkpointList.Add(new Vector3(20f, -2.74f, -260));
-        checkpointList.Add(new Vector3(14f, -2.74f, -355));
+        checkpointList.Add(new Vector3(14f, -2.74f, -355));*/
     }
 	
 	// Update is called once per frame
