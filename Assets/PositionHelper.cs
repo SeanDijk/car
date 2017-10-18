@@ -36,7 +36,7 @@ public class PositionHelper
     {
         //var bounds = baseObject.GetComponent<Renderer>().bounds.size;
 
-        var offsetLeftRight = 5;//bounds.z;
+        var offsetLeftRight = 2.5;//bounds.z;
         //var offsetFrontBack = //bounds.x;
 
         var leftOrRight = baseObject.InverseTransformPoint(relativeObject.transform.position).x;
@@ -64,9 +64,11 @@ public class PositionHelper
         {
             return frontOrBack;
         }
+    }
 
-
-
+    public static  bool IsCloseTo(Transform baseObject, Collider relativeObject, float range)
+    {
+        return Vector3.Distance(baseObject.transform.position, relativeObject.transform.position) <= range;
     }
 
 }

@@ -7,9 +7,11 @@ public class CarAdvice
     public const int TURN_RIGHT = 1;
     public const int TURN_NONE = 0;
 
-    public const int ACCELERATE_FW = 1;
-    public const int ACCELERATE_BW = -1;
-    public const int BRAKE = 0;
+    public const int KEEP_CURRENT_SPEED = -1;
+    public const int ACCELERATE_FW = 0;
+    public const int ACCELERATE_BW = 1;
+    public const int GRADUALLY_BRAKE = 2;
+    public const int INSTANT_BRAKE = 3;
 
     private AdviceItem<int> moveType;
 

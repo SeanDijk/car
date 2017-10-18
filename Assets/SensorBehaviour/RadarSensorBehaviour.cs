@@ -38,54 +38,46 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
         // Debug.Log("RadarSensorBehaviour action");
 
         bool objectInFrontOfCar = false;
-
+        bool objectLeftFront = false;
+        bool objectRightFront = false;
 
         for (int i = 0; i < currentVisableColliders.Count; i++)
         {
             var collider = currentVisableColliders[i];
 
             var position = PositionHelper.GetRelativePosition(car.transform, collider);
-            if (position == PositionHelper.POSITION_FRONT)
-            {
+            if (position == PositionHelper.POSITION_FRONT && PositionHelper.IsCloseTo(car.transform, collider, 15f))
                 objectInFrontOfCar = true;
-            }
+            if (position == PositionHelper.POSITION_FRONT_LEFT)
+                objectLeftFront = true;
+            if (position == PositionHelper.POSITION_FRONT_RIGHT)
+                objectRightFront = true;
         }
+        AdviceItem<int> move;
+        AdviceItem<int> turn;
 
         if (objectInFrontOfCar)
+            move = new AdviceItem<int>(true, CarAdvice.INSTANT_BRAKE);
+        else
+            move = new AdviceItem<int>(false, CarAdvice.INSTANT_BRAKE);
+
+        /*if (objectLeftFront ^ objectRightFront)
         {
-            return new CarAdvice(
-                new AdviceItem<int>(true, CarAdvice.BRAKE),
-                new AdviceItem<int>(false, 0)
-                );
+            if (objectLeftFront)
+                turn = new AdviceItem<int>(true, CarAdvice.TURN_RIGHT);
+            else
+                turn = new AdviceItem<int>(true, CarAdvice.TURN_LEFT);
         }
-        //This basicly isnt used since the advice for all items is false
-        return new CarAdvice(CarAdvice.ACCELERATE_FW, 0);
+        else
+        {
+            turn = new AdviceItem<int>(false, CarAdvice.INSTANT_BRAKE);
+        }*/
+
+        turn = new AdviceItem<int>(false, CarAdvice.TURN_NONE);
+        return new CarAdvice(move, turn);
+
     }
-
-
-    /*
-    private int CheckPosition(Car car, Collider collider)
-    {
-        Vector3 directionToTarget = car.transform.position - collider.transform.position;
-
-        float angel = Vector3.Angle(car.transform.forward, directionToTarget);
-
-        var calculatedAngle = Mathf.Abs(angel);
-
-        if (calculatedAngle > 90) {
-            Debug.Log("target is behind me");
-            return PositionHelper.POSITION_REAR;
-        }
-
-        else if (calculatedAngle <= 90) {
-            Debug.Log("target is infront");
-            return PositionHelper.POSITION_FRONT;
-        }
-
-
-        return PositionHelper.UNKOWN;
-    }
-    */
+    
 }
 
 
