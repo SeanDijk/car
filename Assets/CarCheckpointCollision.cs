@@ -27,6 +27,7 @@ public class CarCheckpointCollision : MonoBehaviour {
     {
         if (other.gameObject.name == "CheckPoint") // If the object it collides with is a checkpoint, the car will change the direction.
         {
+            Debug.Log("Test");
             car.ChangeDirection(checkpointBox.transform.position);
             checkpointCounter++;
         }

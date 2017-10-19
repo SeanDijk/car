@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 1215c75d40b240345a60cebb8cc13314
 timeCreated: 1507541553
+=======
+guid: 4c3bc63d800a3b9498aea816b9a03dcd
+timeCreated: 1508327255
+>>>>>>> CarRoute
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
