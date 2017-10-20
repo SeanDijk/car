@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -168,7 +168,7 @@ public class Car : MonoBehaviour
     public float GetSpeed() //km/h
     {
         var speed =  gameObject.GetComponent<Rigidbody>().velocity.magnitude * 3.6f;
-        Debug.Log(speed);
+        //Debug.Log(speed);
         return speed;
     }
 
