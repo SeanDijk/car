@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.VR.WSA.WebCam;
 //so that we can see changes we make without having to run the game
@@ -21,18 +22,23 @@ public class LidarDepthMapScript : MonoBehaviour
 
     // Update is called once per frame
     int prev = 0;
+    int counter = 0;
+    const int MAX_COUNTER = 3;
     void Update()
     {
         var newNum = Convert.ToInt32(Time.fixedTime);
         if (newNum > prev)
         {
+            transform.RotateAround(transform.position, transform.up, 90f * MAX_COUNTER - counter);
             prev = newNum;
-            for (int i = 0; i < 4; i++)
-            {
-                ScreenCapture.CaptureScreenshot("test/" + prev + "_" + i+ ".png");
-                transform.RotateAround(transform.position, transform.up, 90f);
-            }
-
+            counter = 0;
+            Directory.CreateDirectory("test/" + newNum);
+        }
+        if(counter < MAX_COUNTER)
+        {
+            ScreenCapture.CaptureScreenshot("test/" + newNum + "/" + counter + ".png");
+            transform.RotateAround(transform.position, transform.up, 90f);
+            counter++;
         }
     }
 
