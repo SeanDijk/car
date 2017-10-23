@@ -621,6 +621,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1258549952695692
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4058473153667452}
+  - component: {fileID: 114908532312474026}
+  - component: {fileID: 65281345408613028}
+  m_Layer: 0
+  m_Name: RadarFl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1271086616528280
 GameObject:
   m_ObjectHideFlags: 1
@@ -1044,7 +1061,7 @@ GameObject:
   - component: {fileID: 114342817250835070}
   - component: {fileID: 65043403076715598}
   m_Layer: 0
-  m_Name: RadarFl
+  m_Name: RadarFR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2266,6 +2283,19 @@ Transform:
   m_Father: {fileID: 4161271681771928}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4058473153667452
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258549952695692}
+  m_LocalRotation: {x: 0, y: -0.06975647, z: 0, w: 0.9975641}
+  m_LocalPosition: {x: 1.5, y: -0.46, z: -10.25}
+  m_LocalScale: {x: 0.7081583, y: 0.3885165, z: 0.32750174}
+  m_Children: []
+  m_Father: {fileID: 4096943007808802}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -8, z: 0}
 --- !u!4 &4070717031844690
 Transform:
   m_ObjectHideFlags: 1
@@ -2397,6 +2427,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4058473153667452}
   - {fileID: 4511947399746272}
   m_Father: {fileID: 4362936397675294}
   m_RootOrder: 0
@@ -2954,7 +2985,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579908550985338}
   m_LocalRotation: {x: -0, y: 0.510068, z: -0, w: 0.8601341}
-  m_LocalPosition: {x: 135.74, y: -11.11, z: 98.45}
+  m_LocalPosition: {x: 611.4, y: 52.6, z: -739.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4602223969936508}
@@ -3197,13 +3228,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477062957530256}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.46, z: -9.31}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0.06975647, z: 0, w: 0.9975641}
+  m_LocalPosition: {x: -1.5, y: -0.45999908, z: -10.25}
+  m_LocalScale: {x: 0.7081602, y: 0.38852, z: 0.32750016}
   m_Children: []
   m_Father: {fileID: 4096943007808802}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 8, z: 0}
 --- !u!4 &4517398024140228
 Transform:
   m_ObjectHideFlags: 1
@@ -6353,7 +6384,19 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 3, z: 10}
+  m_Size: {x: 7, y: 3, z: 40}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65281345408613028
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258549952695692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 3, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65488256848203266
 BoxCollider:
@@ -6471,9 +6514,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerOfMass: {fileID: 4501738958234264}
+  maxSpeed: 45
   radarSensorBehaviour:
     radars:
-    - {fileID: 114342817250835070}
+    - {fileID: 114908532312474026}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -6506,6 +6550,23 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477062957530256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860d55ffaeb7f184991b1bb08cb05a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myListener:
+    radars:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+--- !u!114 &114908532312474026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258549952695692}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 860d55ffaeb7f184991b1bb08cb05a93, type: 3}
