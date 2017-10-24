@@ -6527,7 +6527,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137588149358496}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &92862625699971846
 Behaviour:
   m_ObjectHideFlags: 1
@@ -6631,7 +6631,7 @@ MonoBehaviour:
   radarSensorBehaviour:
     radars:
     - {fileID: 114908532312474026}
-    - {fileID: 0}
+    - {fileID: 114342817250835070}
     - {fileID: 0}
     - {fileID: 0}
   wheelColliders:
@@ -6680,7 +6680,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137588149358496}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3b941f904cf37b4696b54f6f9988fa1, type: 3}
   m_Name: 

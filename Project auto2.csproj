@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Assets\CarAdvice.cs" />
     <Compile Include="Assets\CarCheckpointCollision.cs" />
+    <Compile Include="Assets\Logger.cs" />
     <Compile Include="Assets\MonoBehaviourScripts\Car\Car.cs" />
     <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\AbstractDriveBehaviour.cs" />
     <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\AutonomousDriveBehaviour.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\MonoBehaviourScripts\Obstacles\MovingObstacle.cs" />
     <Compile Include="Assets\OnTriggerScript.cs" />
     <Compile Include="Assets\PositionHelper.cs" />
+    <Compile Include="Assets\ScreenRecorder.cs" />
     <Compile Include="Assets\SensorBehaviour\AbstractSensorBehaviour.cs" />
     <Compile Include="Assets\SensorBehaviour\LidarDepthMapScript.cs" />
     <Compile Include="Assets\SensorBehaviour\LidarSensorBehaviour.cs" />

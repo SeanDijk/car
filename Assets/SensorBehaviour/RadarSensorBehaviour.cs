@@ -9,6 +9,8 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
     public Radar[] radars = new Radar[4];
     static List<Collider> currentVisableColliders = new List<Collider>(); //TODO shouldnt be static but is a hotfix for now that works while having just one car.
 
+    Logger logger = null; //new Logger("logger/logTest.csv");
+
     public override void Initialize()
     {
         for (int i = 0; i < radars.Length; i++)
@@ -21,8 +23,18 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
     {
         if (!currentVisableColliders.Contains(other))
         {
+            if(logger == null)
+            {
+                System.IO.Directory.CreateDirectory("logger");
+                logger = new Logger(string.Format("logger/{0}logTest.csv", this));
+            }
+
             currentVisableColliders.Add(other);
             Debug.Log(Time.time.ToString() + " Enter " + currentVisableColliders.Count);
+            logger.AddLineToBuffer(other.gameObject.name, "Testing", "1", "2", "3");
+            logger.AddLineToBuffer("Nog een regel", "Testing", "1", "2", "3");
+
+            logger.Commit();
         }
 
     }

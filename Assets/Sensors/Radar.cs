@@ -7,23 +7,19 @@ public class Radar : AbstractSensor {
     private Collider myCollider;
     
 	// Use this for initialization
-	void Start () {
-        myCollider = GetComponent<Collider>();
-        
+	void Start () {        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        
         if (other.gameObject.name != "CheckPoint" || other.gameObject.name != "Roads")
         {
             Debug.Log("This fucker " + other.gameObject.name);
-           // myListener.OnTriggerEnter(other);
+            myListener.OnTriggerEnter(other);
         }
     }
 
@@ -32,7 +28,7 @@ public class Radar : AbstractSensor {
         
         if (other.gameObject.name != "CheckPoint")
         {
-           // myListener.OnTriggerExit(other);
+            myListener.OnTriggerExit(other);
         }
     }
 }
