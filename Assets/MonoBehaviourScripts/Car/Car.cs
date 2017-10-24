@@ -35,7 +35,7 @@ public class Car : MonoBehaviour
 
     [Header("Sensors")]
     private AbstractSensorBehaviour[] sensorBehaviours = new AbstractSensorBehaviour[1];
-    public RadarSensorBehaviour radarSensorBehaviour = new RadarSensorBehaviour();
+    public RadarSensorBehaviour radarSensorBehaviour;// = new RadarSensorBehaviour();
 
     [Header("Wheels")]
     public WheelCollider[] wheelColliders = new WheelCollider[4]; // A list of the wheelcolliders (FL, FR, RL, RR)
@@ -65,6 +65,12 @@ public class Car : MonoBehaviour
         mRigidbody.centerOfMass = centerOfMass.localPosition;
         driveBehaviour.StartVector(this, -85f, 0f, -100f);
         sensorBehaviours[0] = radarSensorBehaviour;
+
+
+        foreach (var item in sensorBehaviours)
+        {
+            item.Initialize();
+        }
 
     }
 

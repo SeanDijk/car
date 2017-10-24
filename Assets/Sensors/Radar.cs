@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Radar : AbstractSensor {
-    public RadarSensorBehaviour myListener;
-    private Collider myCollider;
+    private RadarSensorBehaviour myListener;
     
 	// Use this for initialization
 	void Start () {        
@@ -14,9 +13,14 @@ public class Radar : AbstractSensor {
 	void Update () {
 	}
 
+    public void AttachListener(RadarSensorBehaviour listener)
+    {
+        myListener = listener;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name != "CheckPoint" || other.gameObject.name != "Roads")
+        if (other.gameObject.name != "CheckPoint" && other.gameObject.name != "Roads" )
         {
             Debug.Log("This fucker " + other.gameObject.name);
             myListener.OnTriggerEnter(other);

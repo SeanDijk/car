@@ -6632,8 +6632,6 @@ MonoBehaviour:
     radars:
     - {fileID: 114908532312474026}
     - {fileID: 114342817250835070}
-    - {fileID: 0}
-    - {fileID: 0}
   wheelColliders:
   - {fileID: 146398544839999924}
   - {fileID: 146817538880392650}
@@ -6668,12 +6666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860d55ffaeb7f184991b1bb08cb05a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myListener:
-    radars:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
 --- !u!114 &114464573328945476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6697,12 +6689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860d55ffaeb7f184991b1bb08cb05a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myListener:
-    radars:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
 --- !u!124 &124483362491424402
 Behaviour:
   m_ObjectHideFlags: 1

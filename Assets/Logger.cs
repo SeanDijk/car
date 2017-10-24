@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System;
 using System.Text;
 
-public class Logger : StreamWriter
+public class Logger 
 {
     private List<string[]> bufferList = new List<string[]>();
+    private string path;
 
-
-    public Logger(string path) : base(path, true)
+    public Logger(string path)
     {
+        this.path = path;
     }
 
     public void AddLineToBuffer(params string[] values)
@@ -22,6 +23,8 @@ public class Logger : StreamWriter
 
     public void Commit()
     {
+        StreamWriter streamWriter = new StreamWriter(path, true);
+
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < bufferList.Count; i++)
         {
@@ -43,11 +46,12 @@ public class Logger : StreamWriter
 
                     firstColumn = false;
             }
-            builder.Append(NewLine);
+            builder.Append(streamWriter.NewLine);
         }
+
         //Write rows to the file
-        Write(builder.ToString());
-        Close();
+        streamWriter.Write(builder.ToString());
+        streamWriter.Close();
         //Clear the buffer list
         bufferList.Clear();
     }
