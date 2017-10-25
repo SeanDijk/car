@@ -97,6 +97,11 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
             logger = new Logger("logger/logTest.csv");
         }
     }
+
+    public int GetAmountOfObjects()
+    {
+        return currentVisableColliders.Count;
+    }
 }
 
 

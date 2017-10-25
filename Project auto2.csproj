@@ -94,6 +94,7 @@
     <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\AbstractDriveBehaviour.cs" />
     <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\AutonomousDriveBehaviour.cs" />
     <Compile Include="Assets\MonoBehaviourScripts\Car\DriveBehaviour\PlayerDriveBehaviour.cs" />
+    <Compile Include="Assets\MonoBehaviourScripts\GUI\SimulationGuiScript.cs" />
     <Compile Include="Assets\MonoBehaviourScripts\Obstacles\MovingObstacle.cs" />
     <Compile Include="Assets\OnTriggerScript.cs" />
     <Compile Include="Assets\PositionHelper.cs" />

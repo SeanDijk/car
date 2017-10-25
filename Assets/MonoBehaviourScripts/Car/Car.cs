@@ -16,6 +16,7 @@ public class Car : MonoBehaviour
     [Header("General")]
     public Transform centerOfMass;
     public float maxSpeed = 45f; // km/h
+    public SimulationGuiScript guiEditor;
 
     //The speed the car should Accelerate to.
     private float drivingSpeed;
@@ -40,6 +41,7 @@ public class Car : MonoBehaviour
     [Header("Wheels")]
     public WheelCollider[] wheelColliders = new WheelCollider[4]; // A list of the wheelcolliders (FL, FR, RL, RR)
     public Transform[] tireMeshes = new Transform[4]; // A list of the tiremeshes (FL, FR, RL, RR)
+
 
     /*
      * Updates the wheel rotation and position according to the wheelcolliders
@@ -72,12 +74,16 @@ public class Car : MonoBehaviour
             item.Initialize();
         }
 
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateMeshesPositions();
+        guiEditor.Speed = GetSpeed();
+        guiEditor.AmountOFObjectsInFront = radarSensorBehaviour.GetAmountOfObjects();
     }
 
     // All the physics must be here
