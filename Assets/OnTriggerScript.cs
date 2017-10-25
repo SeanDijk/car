@@ -33,7 +33,6 @@ public class OnTriggerScript : MonoBehaviour {
             checkpointListRotation.Add(current_rotation);
             i++;
         }
-        // Just for testing purpose DELETE after 612.9 -739
     }
 
     // Update is called once per frame
