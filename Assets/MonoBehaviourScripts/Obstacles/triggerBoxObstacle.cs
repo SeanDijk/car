@@ -6,7 +6,7 @@ public class triggerBoxObstacle : MonoBehaviour {
 
     public int id;
     private bool isActive;
-    private CarSpawnController controller;
+    private ObjectSpawnController controller;
 
 	// Use this for initialization
 	void Start () {
@@ -44,7 +44,7 @@ public class triggerBoxObstacle : MonoBehaviour {
         return isActive;
     }
 
-    public void setController(CarSpawnController GO)
+    public void setController(ObjectSpawnController GO)
     {
         controller = GO;
     }
