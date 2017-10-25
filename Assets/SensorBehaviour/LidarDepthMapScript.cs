@@ -31,7 +31,7 @@ public class LidarDepthMapScript : MonoBehaviour
         myCam = GetComponent<Camera>();
         GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
 
-        InvokeRepeating("LidarAction", 1f, .25f);
+        InvokeRepeating("LidarAction", 1f, 1f);
     }
 
     void Update()

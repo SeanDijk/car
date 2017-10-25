@@ -3855,13 +3855,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1559607110836998}
-  m_LocalRotation: {x: 0.000000048774343, y: -0.9848078, z: 0.17364816, w: 0.0000002766131}
-  m_LocalPosition: {x: 0, y: 34.4, z: 69.1}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalRotation: {x: 0.0000000960667, y: -0.9396927, z: 0.3420201, w: 0.00000026394113}
+  m_LocalPosition: {x: 0, y: 30, z: 30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4340254129999446}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 20, y: -179.99998, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: -179.99998, z: 0}
 --- !u!4 &4888851515144532
 Transform:
   m_ObjectHideFlags: 1
@@ -4172,7 +4172,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 2
   far clip plane: 10000
   field of view: 37.84922
   orthographic: 0
@@ -6628,6 +6628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerOfMass: {fileID: 4501738958234264}
   maxSpeed: 45
+  guiEditor: {fileID: 0}
   radarSensorBehaviour:
     radars:
     - {fileID: 114908532312474026}
@@ -6672,7 +6673,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137588149358496}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3b941f904cf37b4696b54f6f9988fa1, type: 3}
   m_Name: 
