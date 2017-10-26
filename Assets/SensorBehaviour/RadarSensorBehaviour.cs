@@ -7,43 +7,47 @@ using UnityEngine;
 public class RadarSensorBehaviour : AbstractSensorBehaviour
 {
     private List<Collider> currentVisableColliders = new List<Collider>(); 
-    private static Logger logger; //new Logger("logger/logTest.csv");
+    private static Logger logger; 
 
 
     public override void Initialize()
     {
     }
 
+    /*
+     * If the collider isnt seen already, log the name and time and add it to seen objects.
+     */
     public void OnTriggerEnter(Collider other)
     {
         if (!currentVisableColliders.Contains(other))
         {
             SetLogger();
             currentVisableColliders.Add(other);
-           // Debug.Log(Time.time.ToString() + " Enter " + currentVisableColliders.Count);
             logger.AddLineToBuffer(other.gameObject.name, "Enter", Time.realtimeSinceStartup.ToString());
             logger.Commit();
         }
 
     }
-
+    /*
+     * Log and remove the colider from the list.
+     */
     public void OnTriggerExit(Collider other)
     {
         SetLogger();
         currentVisableColliders.Remove(other);
-        //Debug.Log(Time.time.ToString() + " Exit " + currentVisableColliders.Count);
         logger.AddLineToBuffer(other.gameObject.name, "Exit", Time.realtimeSinceStartup.ToString());
         logger.Commit();
     }
 
+
+
     public override CarAdvice GiveAdvice(Car car)
     {
-        // Debug.Log("RadarSensorBehaviour action");
-
         bool objectInFrontOfCar = false;
         bool objectLeftFront = false;
         bool objectRightFront = false;
 
+        //Check if objects are infront and on the left and right side infront of the car
         for (int i = 0; i < currentVisableColliders.Count; i++)
         {
             var collider = currentVisableColliders[i];
@@ -59,11 +63,12 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
         AdviceItem<int> move;
         AdviceItem<int> turn;
 
-        if (objectInFrontOfCar)
+        if (objectInFrontOfCar) //If there is an object infront of the car, brake otherwise dont give an advice.
             move = new AdviceItem<int>(true, CarAdvice.INSTANT_BRAKE);
         else
             move = new AdviceItem<int>(false, CarAdvice.INSTANT_BRAKE);
 
+        //(Not finished) Some code that could be used for object evaision, but eventually we didnt need this.
         /*if (objectLeftFront ^ objectRightFront)
         {
             if (objectLeftFront)

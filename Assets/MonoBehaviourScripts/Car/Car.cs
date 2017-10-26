@@ -110,7 +110,9 @@ public class Car : MonoBehaviour
         //GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, maxSpeed);
     }
 
-
+    /*
+     * Initializes the sensors
+     */
     private void InitSensors()
     {
         //Init radar behaviour and link the radars to it.

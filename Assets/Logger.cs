@@ -5,8 +5,12 @@ using System.Collections.Generic;
 using System;
 using System.Text;
 
+/*
+ * Class to log data to a csv file.
+ */ 
 public class Logger 
 {
+    // List to keep a buffer so that the stream to the file doenst need to be opened all the time.
     private List<string[]> bufferList = new List<string[]>();
     private string path;
 
@@ -20,7 +24,7 @@ public class Logger
         bufferList.Add(values);
     }
 
-
+    // Commits the buffer to the file. Would be better if this went async.
     public void Commit()
     {
         StreamWriter streamWriter = new StreamWriter(path, true);

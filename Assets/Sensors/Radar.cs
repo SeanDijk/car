@@ -18,18 +18,17 @@ public class Radar : AbstractSensor {
         myListener = listener;
     }
 
+    //If the gameobject is a checkpoint, pass it on to the listener
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "CheckPoint" )
         {
-            Debug.Log("This fucker " + other.gameObject.name);
             myListener.OnTriggerEnter(other);
         }
     }
-
+    //If the gameobject is a checkpoint, pass it on to the listener
     private void OnTriggerExit(Collider other)
     {
-        
         if (other.gameObject.name != "CheckPoint")
         {
             myListener.OnTriggerExit(other);
