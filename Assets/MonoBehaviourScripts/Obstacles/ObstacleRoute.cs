@@ -14,10 +14,13 @@ public class ObstacleRoute : MonoBehaviour
     private float current_y;
     private float current_z;
     private float current_rotation;
-    private string path;
+    private string pathRoute;
+    private string obstacleType;
+    private string pathObstacleInfo;
     private string jsonString;
     private JsonData routeData;
-    private float speed = 10;
+    private JsonData objectData;
+    private float speed;
     private int currentPoint;
     private int i;
     private Vector3 nextDestination;
@@ -27,26 +30,10 @@ public class ObstacleRoute : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        jsonObstacleRouteString = "route" + ObstacleRouteNumber.ToString();
-        path = Application.streamingAssetsPath + "/obstacleroutes.json"; // Path to the json file
-        jsonString = File.ReadAllText(path);    // Reads json file
-        routeData = JsonMapper.ToObject(jsonString);
-        for (i = 0; i < routeData[jsonObstacleRouteString][0].Count;) // loop trough all checkpoint object in the array 
-        {
-            current_x = float.Parse(routeData[jsonObstacleRouteString][0][i]["x"].ToString());
-            current_y = float.Parse(routeData[jsonObstacleRouteString][0][i]["y"].ToString());
-            current_z = float.Parse(routeData[jsonObstacleRouteString][0][i]["z"].ToString());
-            current_rotation = float.Parse(routeData[jsonObstacleRouteString][0][i]["rotation"].ToString());
-            Vector3 currentVector = new Vector3(current_x, current_y, current_z);
-            ObstacleRouteList.Add(currentVector);
-            routeListRotation.Add(current_rotation);
-            i++;
-        }
-
-        nextDestination = ObstacleRouteList[0];
-        nextRotation = routeListRotation[0];
-        targetRotation = Quaternion.AngleAxis(nextRotation, Vector3.up);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+        getRouteData();
+        getObstacleProperties();
+        Debug.Log(objectData[obstacleType].Count);
+        Debug.Log(objectData[obstacleType]["speed"].ToString());
     }
 
 
@@ -91,5 +78,40 @@ public class ObstacleRoute : MonoBehaviour
     void setCarRouteNumber(int routeNumber)
     {
         ObstacleRouteNumber = routeNumber;
+    }
+    private void getRouteData()
+    {
+        jsonObstacleRouteString = "route" + ObstacleRouteNumber.ToString();
+        pathRoute = Application.streamingAssetsPath + "/obstacleroutes.json"; // Path to the json file
+        jsonString = File.ReadAllText(pathRoute);    // Reads json file
+        routeData = JsonMapper.ToObject(jsonString);
+        for (i = 0; i < routeData[jsonObstacleRouteString][0].Count;) // loop trough all checkpoint object in the array 
+        {
+            current_x = float.Parse(routeData[jsonObstacleRouteString][0][i]["x"].ToString());
+            current_y = float.Parse(routeData[jsonObstacleRouteString][0][i]["y"].ToString());
+            current_z = float.Parse(routeData[jsonObstacleRouteString][0][i]["z"].ToString());
+            current_rotation = float.Parse(routeData[jsonObstacleRouteString][0][i]["rotation"].ToString());
+            Vector3 currentVector = new Vector3(current_x, current_y, current_z);
+            ObstacleRouteList.Add(currentVector);
+            routeListRotation.Add(current_rotation);
+            i++;
+        }
+
+        nextDestination = ObstacleRouteList[0];
+        nextRotation = routeListRotation[0];
+        targetRotation = Quaternion.AngleAxis(nextRotation, Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+    }
+    private void getObstacleProperties()
+    {
+        pathObstacleInfo = Application.streamingAssetsPath + "/obstacleobjects.json"; // Path to the json file
+        jsonString = File.ReadAllText(pathObstacleInfo);    // Reads json file
+        objectData = JsonMapper.ToObject(jsonString);
+        speed = float.Parse(objectData[obstacleType]["speed"].ToString());
+    }
+
+    public void setObstacleType(string name)
+    {
+        obstacleType = name;
     }
 }

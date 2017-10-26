@@ -2,8 +2,12 @@
   "spawnpoint": [
     {
       "id": 1,
-      "obstacle_type": "objectCar",
+      "obstacle_type": "car",
       "spawnpointData": {
+		"fixedspawntime": "4",
+		"randommin": "1",
+		"randommax": "8",
+		"spawntype": "random",
         "x": -193.2,
         "y": 50.34167,
         "z": 218.1
@@ -20,26 +24,34 @@
     },
     {
       "id": 2,
-      "obstacle_type": "objectBicycle",
+      "obstacle_type": "bicycle",
       "spawnpointData": {
+	    "fixedspawntime": "4",
+		"randommin": "1",
+		"randommax": "8",
+		"spawntype": "fixed",
         "x": 177.23,
         "y": 50.03,
         "z": -724.84
       },
       "triggerboxData": {
-        "x": 194.7,
+        "x": 259,
         "y": 60,
-        "z": -822,
+        "z": -801,
         "rotation": 51.089,
         "scale_x": 374.3673,
         "scale_y": 20,
-        "scale_z": 321.3703
+        "scale_z": 409.8076
       }
     },
         {
       "id": 3,
-      "obstacle_type": "objectBicycle",
+      "obstacle_type": "bicycle",
       "spawnpointData": {
+		"fixedspawntime": "4",
+		"randommin": "1",
+		"randommax": "8",
+		"spawntype": "fixed",
         "x": -101.18,
         "y": 50.05,
         "z": -536.6
@@ -56,128 +68,24 @@
     },
         {
       "id": 4,
-      "obstacle_type": "",
+      "obstacle_type": "bicycle",
       "spawnpointData": {
-        "x": 1,
-        "y": 1,
-        "z": 1
+		"fixedspawntime": "4",
+		"randommin": "1",
+		"randommax": "8",
+		"spawntype": "fixed",
+        "x": 560.5,
+        "y": 50.65,
+        "z": -740.5
       },
       "triggerboxData": {
-        "x": 1,
-        "y": 1,
-        "z": 1,
-        "rotation": 1,
-        "scale_x": 1,
-        "scale_y": 1,
-        "scale_z": 1
-      }
-    },
-        {
-      "id": 5,
-      "obstacle_type": "",
-      "spawnpointData": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "triggerboxData": {
-        "x": 1,
-        "y": 1,
-        "z": 1,
-        "rotation": 1,
-        "scale_x": 1,
-        "scale_y": 1,
-        "scale_z": 1
-      }
-    },
-    {
-      "id": 6,
-      "obstacle_type": "",
-      "spawnpointData": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "triggerboxData": {
-        "x": 1,
-        "y": 1,
-        "z": 1,
-        "rotation": 1,
-        "scale_x": 1,
-        "scale_y": 1,
-        "scale_z": 1
-      }
-    },
-    {
-      "id": 7,
-      "obstacle_type": "",
-      "spawnpointData": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "triggerboxData": {
-        "x": 1,
-        "y": 1,
-        "z": 1,
-        "rotation": 1,
-        "scale_x": 1,
-        "scale_y": 1,
-        "scale_z": 1
-      }
-    },
-        {
-      "id": 8,
-      "obstacle_type": "",
-      "spawnpointData": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "triggerboxData": {
-        "x": 1,
-        "y": 1,
-        "z": 1,
-        "rotation": 1,
-        "scale_x": 1,
-        "scale_y": 1,
-        "scale_z": 1
-      }
-    },
-        {
-      "id": 9,
-      "obstacle_type": "",
-      "spawnpointData": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "triggerboxData": {
-        "x": 1,
-        "y": 1,
-        "z": 1,
-        "rotation": 1,
-        "scale_x": 1,
-        "scale_y": 1,
-        "scale_z": 1
-      }
-    },
-        {
-      "id": 10,
-      "obstacle_type": "",
-      "spawnpointData": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "triggerboxData": {
-        "x": 1,
-        "y": 1,
-        "z": 1,
-        "rotation": 1,
-        "scale_x": 1,
-        "scale_y": 1,
-        "scale_z": 1
+        "x": 619.3,
+        "y": 50.65,
+        "z": -764.6,
+        "rotation": -29.877,
+        "scale_x": 105.9318,
+        "scale_y": 20,
+        "scale_z": 96.68678
       }
     }
   ]
