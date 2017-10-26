@@ -1,0 +1,14 @@
+{
+  "pedestrian": {
+    "prefabname": "objectPedestrian",
+    "speed": "2"
+  },
+  "bicycle": {
+    "prefabname": "objectBicycle",
+    "speed": "5"
+  },
+  "car": {
+    "prefabname": "objectCar",
+    "speed": "12"
+  }
+}
