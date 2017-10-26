@@ -18,7 +18,12 @@ public class OnTriggerScript : MonoBehaviour {
     private float current_rotation;
     int counter = 0;
     // Use this for initialization
-    void Start () {
+
+    /*
+     * The Awake method is used here instead of Start. Start runs on the first frame the script is active, awake on initialization.
+     * Awake is needed so that an object using this script can be teleported in a trigger as soon as it is created.
+     */
+    void Awake () {
         path = Application.streamingAssetsPath + "/checkpointcoordinates.json"; // Path to the json file
         jsonString = File.ReadAllText(path);    // Reads json file
         checkpointData = JsonMapper.ToObject(jsonString); 
@@ -41,7 +46,7 @@ public class OnTriggerScript : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "CheckpointCollisionChecker") // If there is a collision with the checkpointcollider of the car, it will change it's position
+        if (other.gameObject.name == "CarTriggerBox") // If there is a collision with the checkpointcollider of the car, it will change it's position
         {
             if (checkpointList.Count > checkpointCounter)
             {

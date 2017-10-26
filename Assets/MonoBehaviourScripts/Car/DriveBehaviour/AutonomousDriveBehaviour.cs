@@ -4,22 +4,43 @@ using System;
 
 public class AutonomousDriveBehaviour : AbstractDriveBehaviour
 {
-    Vector3 newPosition;
+    //This is the vector the car will try to drive towards.
+    private Vector3 goToPosition;
+    public Vector3 GoToPosition
+    {
+        get { return goToPosition; }
+        set { goToPosition = value; }
+    }
+
+    //The Advice that is used to determine what the car should do, based on the location the car tries to drive to.
     CarAdvice moveTowardsAdvice;
-    public override void StartVector(Car c, float x, float y, float z)
+
+
+    protected override void InitializeImplementation(Car c)
     {
-        newPosition = new Vector3(-150, c.transform.position.y, 30);
+        //Add the CarCheckpointCollision script o the CarTriggerbox
+        var checkPointCollisionScript = c.CarTriggerBox.gameObject.AddComponent<CarCheckpointCollision>();
+
+        var checkpointBox = (GameObject) GameObject.Instantiate(Resources.Load("CheckpointPrefab"));
+
+        //Set values to the script to link needed objects
+        checkPointCollisionScript.CheckPointBox = checkpointBox.GetComponent<OnTriggerScript>();
+        checkPointCollisionScript.DriveBehaviour = this;
+
+        //Set the checkpointbox in the trigger box of the car
+        checkpointBox.transform.position = c.CarTriggerBox.transform.position;
+
+
     }
-    public override void GoToNewPosition(Car c, Vector3 newVector)
-    {
-        newPosition = newVector;
-    }
+
+
+
     public override void FixedUpdate(Car c, AbstractSensorBehaviour[] sensorBehaviours)
     {
         //TODO take multple sensorsbehaveiours into account
         CarAdvice finalAdvice = null;
         CarAdvice sensorAdvice = null;
-        moveTowardsAdvice = GetMoveTowardsAdvice(c, newPosition);
+        moveTowardsAdvice = GetMoveTowardsAdvice(c, goToPosition);
 
         for (int i = 0; i < sensorBehaviours.Length; i++)
         {
@@ -50,7 +71,7 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
             case CarAdvice.INSTANT_BRAKE: car.Brake(car.MAX_TORQUE_BRAKE); break;
             case CarAdvice.KEEP_CURRENT_SPEED: break;
             case CarAdvice.GRADUALLY_BRAKE:
-                if (car.GetSpeed() * 2 < car.DrivingSpeed)
+                if (car.GetCurrentSpeed() * 2 < car.CurrentMaxDrivingSpeed)
                     car.BrakeGradually(car.MAX_TORQUE_BRAKE, 0f);
                 break;
         }
@@ -59,7 +80,7 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
     }
     private void SetCarMaxSpeed(Car c, float f)
     {
-        c.DrivingSpeed = f;
+        c.CurrentMaxDrivingSpeed = f;
     }
     public CarAdvice GetMoveTowardsAdvice(Car c, Vector3 endPos)
     {

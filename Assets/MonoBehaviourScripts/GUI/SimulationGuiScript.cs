@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SimulationGuiScript : MonoBehaviour {
     private float speed;
-
     public float Speed
     {
         get { return speed; }
@@ -16,7 +15,6 @@ public class SimulationGuiScript : MonoBehaviour {
     }
 
     private int amountOfObjectsInFront;
-
     public int AmountOFObjectsInFront
     {
         get { return amountOfObjectsInFront; }

@@ -3,8 +3,22 @@ using UnityEditor;
 
 public abstract class AbstractDriveBehaviour
 {
-    public abstract void FixedUpdate(Car c, AbstractSensorBehaviour[] sensorBehaviours);
-    public abstract void GoToNewPosition(Car c, Vector3 newVector);
-    public abstract void StartVector(Car c, float x, float y, float z);
+    private bool isInitialized = false;
+    public void Initialize(Car c)
+    {
+        if (!isInitialized)
+        {
+            InitializeImplementation(c);
+            isInitialized = true;
+        }
+        else
+        {
+            Debug.Log(this.ToString() + "has already been initialized");
+        }
+    }
 
+
+    public abstract void FixedUpdate(Car c, AbstractSensorBehaviour[] sensorBehaviours);
+
+    protected abstract void InitializeImplementation(Car c);
 }

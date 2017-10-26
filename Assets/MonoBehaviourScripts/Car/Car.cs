@@ -11,28 +11,25 @@ public class Car : MonoBehaviour
     public readonly float MAX_TORQUE_BRAKE = 8f * 80f;
     public readonly float MAX_STEER_ANGLE = 45f;
 
-    private AbstractDriveBehaviour driveBehaviour = new AutonomousDriveBehaviour(); //Should be interchangeable
-
     [Header("General")]
-    public Transform centerOfMass;
-    public float maxSpeed = 45f; // km/h
+    //The max speed the car is able to drive in km/h
+    public float maxSpeed = 45f;
+    //A reference to the Gui to update values on screen accordingly
     public SimulationGuiScript guiEditor;
 
     //The speed the car should Accelerate to.
-    private float drivingSpeed;
-    public float DrivingSpeed
+    private float currentMaxDrivingSpeed;
+    public float CurrentMaxDrivingSpeed
     {
-        get { return drivingSpeed; }
+        get { return currentMaxDrivingSpeed; }
         set
         {
             if (value > maxSpeed)
-                drivingSpeed = maxSpeed;
+                currentMaxDrivingSpeed = maxSpeed;
             else
-                drivingSpeed = value;
+                currentMaxDrivingSpeed = value;
         }
     }
-
-    private Rigidbody mRigidbody;
 
     [Header("Sensors")]
     private AbstractSensorBehaviour[] sensorBehaviours = new AbstractSensorBehaviour[1];
@@ -41,6 +38,29 @@ public class Car : MonoBehaviour
     [Header("Wheels")]
     public WheelCollider[] wheelColliders = new WheelCollider[4]; // A list of the wheelcolliders (FL, FR, RL, RR)
     public Transform[] tireMeshes = new Transform[4]; // A list of the tiremeshes (FL, FR, RL, RR)
+
+    /*
+     * A triggerbox on the the car that can be used to put trigger scripts on (So that a Drivebehaviour can use triggers)
+     */
+    private BoxCollider carTriggerBox;
+    public BoxCollider CarTriggerBox
+    {
+        get { return carTriggerBox; }
+        private set { carTriggerBox = value; }
+    }
+
+    /*
+     * Behaviour class for driving
+     */
+    private AbstractDriveBehaviour driveBehaviour;
+    private AbstractDriveBehaviour DriveBehaviour
+    {
+        get { return driveBehaviour; }
+        set {
+            driveBehaviour = value;
+            driveBehaviour.Initialize(this);
+        }
+    }
 
 
     /*
@@ -62,27 +82,29 @@ public class Car : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //Change the center of mass, so the car doesnt flip while turning
-        mRigidbody = GetComponent<Rigidbody>();
-        mRigidbody.centerOfMass = centerOfMass.localPosition;
-        driveBehaviour.StartVector(this, -85f, 0f, -100f);
-        sensorBehaviours[0] = radarSensorBehaviour;
+        //Set reference to the triggerbox
+        CarTriggerBox = gameObject.transform.Find("CarTriggerBox").GetComponent<BoxCollider>();
 
+        //Set the drivebehaviour, this should become interchangeable in the future
+        DriveBehaviour = new AutonomousDriveBehaviour();
+  
+        //Change the center of mass, so that this is more to the bottom of the car, to better simulate the actual center of mass of the car.
+        GetComponent<Rigidbody>().centerOfMass = gameObject.transform.Find("CenterOfMass").localPosition;
+
+
+        sensorBehaviours[0] = radarSensorBehaviour;
 
         foreach (var item in sensorBehaviours)
         {
             item.Initialize();
         }
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateMeshesPositions();
-        guiEditor.Speed = GetSpeed();
+        guiEditor.Speed = GetCurrentSpeed();
         guiEditor.AmountOFObjectsInFront = radarSensorBehaviour.GetAmountOfObjects();
     }
 
@@ -126,7 +148,7 @@ public class Car : MonoBehaviour
     public void Accelerate(float torque)
     {
         //If the lower than the max speed, accelerate, else stop accelerating
-        if (GetSpeed() <= maxSpeed)
+        if (GetCurrentSpeed() <= maxSpeed)
         {
             if (torque > MAX_TORQUE_FW)
                 torque = MAX_TORQUE_FW;
@@ -165,31 +187,23 @@ public class Car : MonoBehaviour
         Brake(wheelColliders[0].brakeTorque + 10 * Time.deltaTime);
     }
 
-    public void BrakeUntilSpeed(float speed)
-    {
-        if (GetSpeed() > speed)
-            Brake(MAX_TORQUE_BRAKE);
 
-    }
-
-    public void ChangeDirection(Vector3 newVector) // Changes direction of the car.
-    {
-        driveBehaviour.GoToNewPosition(this, newVector);
-    }
-
-    public float GetSpeed() //km/h
+    /*
+     * Gets the current speed in km/h
+     */
+    public float GetCurrentSpeed()
     {
         var speed =  gameObject.GetComponent<Rigidbody>().velocity.magnitude * 3.6f;
-        //Debug.Log(speed);
         return speed;
     }
-
-    /*public float GetBrakeDistance()
+    /*
+     * Manages that the car doesnt drive faster than his max speed
+     */
+    public void BrakeUntilSpeed(float speed)
     {
-        var rigedBody = GetComponent<Rigidbody>();
-        var distance = Mathf.Pow(rigedBody.velocity.magnitude, 2) / (2f * 0.8f) * 9.81f;
-        return distance;
-    }*/
+        if (GetCurrentSpeed() > speed)
+            Brake(MAX_TORQUE_BRAKE);
+    }
 }
 
 

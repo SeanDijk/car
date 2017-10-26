@@ -20,7 +20,7 @@ public class Radar : AbstractSensor {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name != "CheckPoint" && other.gameObject.name != "Roads" )
+        if (other.gameObject.tag != "CheckPoint" )
         {
             Debug.Log("This fucker " + other.gameObject.name);
             myListener.OnTriggerEnter(other);
