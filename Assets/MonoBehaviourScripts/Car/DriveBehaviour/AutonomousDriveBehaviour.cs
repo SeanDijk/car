@@ -45,7 +45,7 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
         for (int i = 0; i < sensorBehaviours.Length; i++)
         {
             var sensorBehaviour = sensorBehaviours[i];
-            var carAdvice = sensorBehaviour.DoAction(c);
+            var carAdvice = sensorBehaviour.GiveAdvice(c);
             sensorAdvice = carAdvice;
         }
         finalAdvice = moveTowardsAdvice;

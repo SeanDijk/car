@@ -6,7 +6,7 @@ public class LidarSensorBehaviour : AbstractSensorBehaviour
 
 
 
-    public override CarAdvice DoAction(Car car)
+    public override CarAdvice GiveAdvice(Car car)
     {
         throw new System.NotImplementedException();
     }

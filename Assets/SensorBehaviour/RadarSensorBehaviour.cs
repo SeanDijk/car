@@ -6,21 +6,12 @@ using UnityEngine;
 [System.Serializable]
 public class RadarSensorBehaviour : AbstractSensorBehaviour
 {
-    public Radar[] radars = new Radar[4];
-    List<Collider> currentVisableColliders = new List<Collider>(); 
-    static Logger logger = null; //new Logger("logger/logTest.csv");
+    private List<Collider> currentVisableColliders = new List<Collider>(); 
+    private static Logger logger; //new Logger("logger/logTest.csv");
 
-    public RadarSensorBehaviour()
-    {
-        
-    }
 
     public override void Initialize()
     {
-        for (int i = 0; i < radars.Length; i++)
-        {
-            radars[i].AttachListener(this);
-        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -45,7 +36,7 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
         logger.Commit();
     }
 
-    public override CarAdvice DoAction(Car car)
+    public override CarAdvice GiveAdvice(Car car)
     {
         // Debug.Log("RadarSensorBehaviour action");
 

@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class Car : MonoBehaviour
 {
-    //private static float MAX_TORQUE_FW = 500f;
     public readonly float MAX_TORQUE_FW = 80f;
     public readonly float MAX_TORQUE_BW = 80f;
     public readonly float MAX_TORQUE_BRAKE = 8f * 80f;
@@ -31,10 +30,7 @@ public class Car : MonoBehaviour
         }
     }
 
-    [Header("Sensors")]
-    private AbstractSensorBehaviour[] sensorBehaviours = new AbstractSensorBehaviour[1];
-    public RadarSensorBehaviour radarSensorBehaviour;// = new RadarSensorBehaviour();
-
+    //For future version: load this from code so that it can be more dyamic and you dont need the inspector.
     [Header("Wheels")]
     public WheelCollider[] wheelColliders = new WheelCollider[4]; // A list of the wheelcolliders (FL, FR, RL, RR)
     public Transform[] tireMeshes = new Transform[4]; // A list of the tiremeshes (FL, FR, RL, RR)
@@ -62,6 +58,11 @@ public class Car : MonoBehaviour
         }
     }
 
+    /*
+     * The sensorbehaviours
+     */
+    private AbstractSensorBehaviour[] sensorBehaviours = new AbstractSensorBehaviour[1];
+    private RadarSensorBehaviour radarSensorBehaviour;
 
     /*
      * Updates the wheel rotation and position according to the wheelcolliders
@@ -91,13 +92,7 @@ public class Car : MonoBehaviour
         //Change the center of mass, so that this is more to the bottom of the car, to better simulate the actual center of mass of the car.
         GetComponent<Rigidbody>().centerOfMass = gameObject.transform.Find("CenterOfMass").localPosition;
 
-
-        sensorBehaviours[0] = radarSensorBehaviour;
-
-        foreach (var item in sensorBehaviours)
-        {
-            item.Initialize();
-        }
+        InitSensors();
     }
 
     // Update is called once per frame
@@ -115,6 +110,34 @@ public class Car : MonoBehaviour
         //GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, maxSpeed);
     }
 
+
+    private void InitSensors()
+    {
+        //Init radar behaviour and link the radars to it.
+        radarSensorBehaviour = new RadarSensorBehaviour();
+        foreach (var item in GetRadarSensors())
+        {
+            item.AttachListener(radarSensorBehaviour);
+        }
+        sensorBehaviours[0] = radarSensorBehaviour;
+
+        foreach (var item in sensorBehaviours)
+        {
+            item.Initialize();
+        }
+    }
+    private Radar[] GetRadarSensors()
+    {
+        var sensorObjectsParent = gameObject.transform.Find("Sensors/RadarSensors");
+        var radarArray = new Radar[sensorObjectsParent.childCount];
+
+        for (int i = 0; i < sensorObjectsParent.childCount; i++)
+        {
+            radarArray[i] = sensorObjectsParent.GetChild(i).gameObject.GetComponent<Radar>();
+        }
+
+        return radarArray;
+    }
 
     /*
      * Turns the front wheels.
