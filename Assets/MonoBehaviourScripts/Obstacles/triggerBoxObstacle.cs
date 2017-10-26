@@ -19,7 +19,7 @@ public class triggerBoxObstacle : MonoBehaviour {
 	}
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "CheckpointCollisionChecker")
+        if (other.gameObject.name == "CarTriggerBox")
         {
             Debug.Log("Yee boi");
             controller.turnOnSpawner(id);
@@ -32,7 +32,7 @@ public class triggerBoxObstacle : MonoBehaviour {
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "CheckpointCollisionChecker")
+        if (other.gameObject.name == "CarTriggerBox")
         {
             isActive = false;
             controller.turnOffSpawner(id);
