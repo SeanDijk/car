@@ -68,14 +68,14 @@
     },
         {
       "id": 4,
-      "obstacle_type": "bicycle",
+      "obstacle_type": "pedestrian",
       "spawnpointData": {
-		"fixedspawntime": "4",
+		"fixedspawntime": "8",
 		"randommin": "1",
 		"randommax": "8",
 		"spawntype": "fixed",
         "x": 560.5,
-        "y": 50.65,
+        "y": 50.118,
         "z": -740.5
       },
       "triggerboxData": {
