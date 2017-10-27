@@ -1,23 +1,24 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 using UnityEngine;
-using UnityEngine.VR.WSA.WebCam;
+
+//using UnityEngine.VR.WSA.WebCam;
 //so that we can see changes we make without having to run the game
 
 [System.Serializable]
 public class LidarDepthMapScript : MonoBehaviour
-{    
+{
     public Material mat;
 
     private ScreenRecorder screenRecorder = null;
     private Camera myCam = null;
 
     private string folder = null;
-    void Start()
+
+    private void Start()
     {
         //Load up the screenrecorder
-        screenRecorder = (ScreenRecorder) ScriptableObject.CreateInstance(typeof(ScreenRecorder));
+        screenRecorder = (ScreenRecorder)ScriptableObject.CreateInstance(typeof(ScreenRecorder));
         screenRecorder.captureWidth = 1280;
         screenRecorder.captureHeight = 720;
 
@@ -34,29 +35,27 @@ public class LidarDepthMapScript : MonoBehaviour
         InvokeRepeating("LidarAction", 1f, 1f);
     }
 
-    void Update()
+    private void Update()
     {
-
     }
 
-    void OnRenderImage(RenderTexture source, RenderTexture destination)
+    private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         Graphics.Blit(source, destination, mat);
         //mat is the material which contains the shader
         //we are passing the destination RenderTexture to
-
     }
 
-    void CaptureImage()
+    private void CaptureImage()
     {
         screenRecorder.CaptureScreenshot(myCam);
     }
 
+    private int rotateCounter = 0;
+    private int folderCounter = 0;
 
-    int rotateCounter = 0;
-    int folderCounter = 0;
     // Rotates the camera 90 degrees to the right
-    void RotateCamera90Degrees()
+    private void RotateCamera90Degrees()
     {
         transform.RotateAround(transform.position, transform.up, 90f);
         rotateCounter++;
@@ -67,10 +66,10 @@ public class LidarDepthMapScript : MonoBehaviour
             folderCounter++;
         }
         ChangeFolder();
-
     }
+
     // Changes the folder acording the the rotation.
-    void ChangeFolder()
+    private void ChangeFolder()
     {
         var tempString = folder + "/" + folderCounter;
 
@@ -86,7 +85,7 @@ public class LidarDepthMapScript : MonoBehaviour
         screenRecorder.folder = tempString;
     }
 
-    void LidarAction()
+    private void LidarAction()
     {
         CaptureImage();
         RotateCamera90Degrees();
