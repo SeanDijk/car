@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarCheckpointCollision : MonoBehaviour {
+public class CarCheckpointCollisionScript : MonoBehaviour {
     private AutonomousDriveBehaviour autonomousDriveBehaviour;
     public AutonomousDriveBehaviour DriveBehaviour
     {
@@ -10,8 +10,8 @@ public class CarCheckpointCollision : MonoBehaviour {
         set { autonomousDriveBehaviour = value; }
     }
 
-    private OnTriggerScript checkPointBox;
-    public OnTriggerScript CheckPointBox
+    private CarCheckpoint checkPointBox;
+    public CarCheckpoint CheckPointBox
     {
         get { return checkPointBox; }
         set { checkPointBox = value; }

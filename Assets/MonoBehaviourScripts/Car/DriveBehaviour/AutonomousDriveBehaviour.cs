@@ -19,12 +19,12 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
     protected override void InitializeImplementation(Car c)
     {
         //Add the CarCheckpointCollision script o the CarTriggerbox
-        var checkPointCollisionScript = c.CarTriggerBox.gameObject.AddComponent<CarCheckpointCollision>();
+        var checkPointCollisionScript = c.CarTriggerBox.gameObject.AddComponent<CarCheckpointCollisionScript>();
 
         var checkpointBox = (GameObject) GameObject.Instantiate(Resources.Load("CheckpointPrefab"));
 
         //Set values to the script to link needed objects
-        checkPointCollisionScript.CheckPointBox = checkpointBox.GetComponent<OnTriggerScript>();
+        checkPointCollisionScript.CheckPointBox = checkpointBox.GetComponent<CarCheckpoint>();
         checkPointCollisionScript.DriveBehaviour = this;
 
         //Set the checkpointbox in the trigger box of the car
@@ -34,10 +34,11 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
     }
 
 
-
+    /*
+     * In here the car determines how it should move.
+     */
     public override void FixedUpdate(Car c, AbstractSensorBehaviour[] sensorBehaviours)
     {
-        //TODO take multple sensorsbehaveiours into account
         CarAdvice finalAdvice = null;
         CarAdvice sensorAdvice = null;
         moveTowardsAdvice = GetMoveTowardsAdvice(c, goToPosition);
@@ -46,7 +47,11 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
         {
             var sensorBehaviour = sensorBehaviours[i];
             var carAdvice = sensorBehaviour.GiveAdvice(c);
-            sensorAdvice = carAdvice;
+
+            if (sensorAdvice == null)
+                sensorAdvice = carAdvice;
+            else
+                sensorAdvice.Combine(carAdvice);
         }
         finalAdvice = moveTowardsAdvice;
 
@@ -61,6 +66,9 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
 
     }
 
+    /*
+     * Moves a car based an the CarAdvice
+     */
     private void Move(Car car, CarAdvice carAdvice)
     {
         int movetype = carAdvice.MoveType.Second;
@@ -78,11 +86,17 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
 
         car.Turn(carAdvice.TurnDirection.Second * car.MAX_STEER_ANGLE);
     }
+    /*
+     * Changes the current max speed of the car (can be used for traction control)
+     */
     private void SetCarMaxSpeed(Car c, float f)
     {
         c.CurrentMaxDrivingSpeed = f;
     }
-    public CarAdvice GetMoveTowardsAdvice(Car c, Vector3 endPos)
+    /*
+     * Gets an advice to move towards a certain vector. The car WONT brake if close to the point.
+     */
+    private CarAdvice GetMoveTowardsAdvice(Car c, Vector3 endPos)
     {
         var carPos = c.transform.position;
         float angleTowardsPosition = PositionHelper.GetAngleTowardsPosition(c.transform, endPos);
@@ -98,8 +112,10 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
             movetype = CarAdvice.GRADUALLY_BRAKE;
         return new CarAdvice(movetype, turnDirection);
     }
-
-    public CarAdvice GetMoveToPointAdvice(Car c, Vector3 endPos){
+    /*
+     * Gets an advice to move towards a certain vector. The car WILL brake if close to the point.
+     */
+    private CarAdvice GetMoveToPointAdvice(Car c, Vector3 endPos){
         var advice = GetMoveTowardsAdvice(c, endPos);
         var isCloseToTarget = IsCloseToTarget(c, endPos);
 
@@ -112,6 +128,7 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
 
         return advice;
     }
+
     private bool IsPositionInFrontOfCar(float angle)
     {
         return Mathf.Abs(angle) < 90;

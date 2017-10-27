@@ -107,7 +107,6 @@ public class Car : MonoBehaviour
     private void FixedUpdate()
     {
         driveBehaviour.FixedUpdate(this, sensorBehaviours);
-        //GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, maxSpeed);
     }
 
     /*
@@ -222,9 +221,9 @@ public class Car : MonoBehaviour
         return speed;
     }
     /*
-     * Manages that the car doesnt drive faster than his max speed
+     * Brakes if the car is above a certain speed.
      */
-    public void BrakeUntilSpeed(float speed)
+    private void BrakeUntilSpeed(float speed)
     {
         if (GetCurrentSpeed() > speed)
             Brake(MAX_TORQUE_BRAKE);

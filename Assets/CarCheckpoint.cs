@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using LitJson;
 
-public class OnTriggerScript : MonoBehaviour {
+public class CarCheckpoint : MonoBehaviour {
     public List<Vector3> checkpointList = new List<Vector3>(); // List containing the vector3's of the checkpoint places
     public List<float> checkpointListRotation = new List<float>(); // List containing the rotayion of the checkpoint places
     private int checkpointCounter = 0;
@@ -65,13 +65,5 @@ public class OnTriggerScript : MonoBehaviour {
         }
 
     }
-    void OnTriggerStay(Collider other)
-    {
-
-    }
-    void OnTriggerExit(Collider other)
-    {
-    }
-
 }
 
