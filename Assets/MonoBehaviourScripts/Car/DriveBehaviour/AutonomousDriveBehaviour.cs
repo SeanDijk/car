@@ -16,11 +16,16 @@ public class AutonomousDriveBehaviour : AbstractDriveBehaviour
     CarAdvice moveTowardsAdvice;
 
 
+    /*
+     * 1. Adds the CarCheckpointCollisionScript to the CarTriggerBox
+     * 2. Instantiates the CheckpointPrefab
+     * 3. Add values to the CheckpointCollisionScript
+     * 4. Move the checkpoint to the car.
+     */ 
     protected override void InitializeImplementation(Car c)
     {
         //Add the CarCheckpointCollision script o the CarTriggerbox
         var checkPointCollisionScript = c.CarTriggerBox.gameObject.AddComponent<CarCheckpointCollisionScript>();
-
         var checkpointBox = (GameObject) GameObject.Instantiate(Resources.Load("CheckpointPrefab"));
 
         //Set values to the script to link needed objects

@@ -17,23 +17,6 @@ public class CarCheckpointCollisionScript : MonoBehaviour {
         set { checkPointBox = value; }
     }
 
-    // Use this for initialization
-    void Start () {
-
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    void OnTriggerEnter(Collider other)
-    {
-
-    }
-    void OnTriggerStay(Collider other)
-    {
-
-    }
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "CheckPoint") // If the object it collides with is a checkpoint, the car will change the direction.

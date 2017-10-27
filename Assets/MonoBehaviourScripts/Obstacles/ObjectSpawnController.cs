@@ -155,6 +155,7 @@ public class ObjectSpawnController : MonoBehaviour
             triggerBox.gameObject.name = "TriggerSpawnpoint " + (i + 1); 
             triggerBox.GetComponent<MeshRenderer>().enabled = false;
             triggerBox.GetComponent<triggerBoxObstacle>().setController(this);
+            triggerBox.gameObject.tag = "SpawnTrigger";
 
             gameObjectTriggerList.Add(triggerBox);
             i++;

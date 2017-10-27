@@ -9,11 +9,6 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
     private List<Collider> currentVisableColliders = new List<Collider>(); 
     private static Logger logger; 
 
-
-    public override void Initialize()
-    {
-    }
-
     /*
      * If the collider isnt seen already, log the name and time and add it to seen objects.
      */
@@ -33,10 +28,13 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
      */
     public void OnTriggerExit(Collider other)
     {
-        SetLogger();
-        currentVisableColliders.Remove(other);
-        logger.AddLineToBuffer(other.gameObject.name, "Exit", Time.realtimeSinceStartup.ToString());
-        logger.Commit();
+        if (currentVisableColliders.Contains(other))
+        {
+            SetLogger();
+            currentVisableColliders.Remove(other);
+            logger.AddLineToBuffer(other.gameObject.name, "Exit", Time.realtimeSinceStartup.ToString());
+            logger.Commit();
+        }
     }
 
 

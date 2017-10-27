@@ -8,5 +8,4 @@ using UnityEngine;
 public abstract class AbstractSensorBehaviour
 {
     public abstract CarAdvice GiveAdvice(Car car);
-    public abstract void Initialize();
 }

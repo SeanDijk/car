@@ -121,11 +121,6 @@ public class Car : MonoBehaviour
             item.AttachListener(radarSensorBehaviour);
         }
         sensorBehaviours[0] = radarSensorBehaviour;
-
-        foreach (var item in sensorBehaviours)
-        {
-            item.Initialize();
-        }
     }
     private Radar[] GetRadarSensors()
     {

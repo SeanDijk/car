@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Radar : AbstractSensor {
-    private RadarSensorBehaviour myListener;
+public class Radar : AbstractSensor<RadarSensorBehaviour> {
     
 	// Use this for initialization
 	void Start () {        
@@ -21,15 +20,16 @@ public class Radar : AbstractSensor {
     //If the gameobject is a checkpoint, pass it on to the listener
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "CheckPoint" )
+        if (other.gameObject.tag != "CheckPoint" && other.gameObject.tag != "SpawnTrigger")
         {
+            Debug.Log(other.gameObject.tag + "    " + other.gameObject.name);
             myListener.OnTriggerEnter(other);
         }
     }
     //If the gameobject is a checkpoint, pass it on to the listener
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name != "CheckPoint")
+        if (other.gameObject.name != "CheckPoint" && other.gameObject.tag != "SpawnTrigger")
         {
             myListener.OnTriggerExit(other);
         }
