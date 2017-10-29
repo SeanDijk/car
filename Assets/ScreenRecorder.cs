@@ -139,6 +139,37 @@ public class ScreenRecorder : ScriptableObject
         }
     }
 
+    public Texture2D CaptureScreenshot2D(Camera cam)
+    {
+        // hide optional game object if set
+        if (hideGameObject != null) hideGameObject.SetActive(false);
 
+        // create screenshot objects if needed
+        if (renderTexture == null)
+        {
+            // creates off-screen render texture that can rendered into
+            rect = new Rect(0, 0, captureWidth, captureHeight);
+            renderTexture = new RenderTexture(captureWidth, captureHeight, 24);
+            screenShot = new Texture2D(captureWidth, captureHeight, TextureFormat.RGB24, false);
+        }
 
+        // get camera that got passed
+        Camera camera = cam;
+        camera.targetTexture = renderTexture;
+        camera.Render();
+
+        // read pixels will read from the currently active render texture so make our offscreen
+        // render texture active and then read the pixels
+        RenderTexture.active = renderTexture;
+        screenShot.ReadPixels(rect, 0, 0);
+
+        // reset active camera texture and render texture
+        camera.targetTexture = null;
+        RenderTexture.active = null;
+
+        // unhide optional game object if set
+        if (hideGameObject != null) hideGameObject.SetActive(true);
+
+        return screenShot;
+    }
 }
