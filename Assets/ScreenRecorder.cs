@@ -35,6 +35,41 @@ public class ScreenRecorder : ScriptableObject
     private RenderTexture renderTexture;
     private Texture2D screenShot;
 
+    private int counter = 0; // image #
+
+    // create a unique filename using a one-up variable
+    public string uniqueFilename(int width, int height)
+    {
+        // if folder not specified by now use a good default
+        if (folder == null || folder.Length == 0)
+        {
+            folder = Application.dataPath;
+            if (Application.isEditor)
+            {
+                // put screenshots in folder above asset path so unity doesn't index the files
+                var stringPath = folder + "/..";
+                folder = Path.GetFullPath(stringPath);
+            }
+            folder += "/screenshots";
+
+            // make sure directoroy exists
+            System.IO.Directory.CreateDirectory(folder);
+
+            // count number of files of specified format in folder
+            string mask = string.Format("screen_{0}x{1}*.{2}", width, height, format.ToString().ToLower());
+            counter = Directory.GetFiles(folder, mask, SearchOption.TopDirectoryOnly).Length;
+        }
+
+        // use width, height, and counter for unique file name
+        var filename = string.Format("{0}/screen_{1}x{2}_{3}.{4}", folder, width, height, counter, format.ToString().ToLower());
+
+        // up counter for next call
+        ++counter;
+
+        // return unique filename
+        return filename;
+    }
+
     // create a unique filename using the cam and filesize
 
     public string UniqueFilename(Camera cam)
