@@ -15,13 +15,15 @@ using Emgu.CV.UI;
 using Emgu.CV.Cuda;
 using System.IO;
 
-public class OpenCV : MonoBehaviour
+public class OpenCV : AbstractSensor<RadarSensorBehaviour>
 {
     public Camera cam1;
     public Camera cam2;
 
     public bool EnableOpenCV = false;
     public float OpenCVRate = 2f;
+
+    public bool TextLog = false;
 
     private ScreenRecorder screenRecorder;
     private StopSignDetector stopSignDetector;
@@ -81,11 +83,19 @@ public class OpenCV : MonoBehaviour
             }
             if (results.Length > 0)
             {
-                foreach (Rectangle rect in results)
+                if (!TextLog)
                 {
-                    CvInvoke.Rectangle(image, rect, new Bgr(System.Drawing.Color.Red).MCvScalar);
+                    foreach (Rectangle rect in results)
+                    {
+                        CvInvoke.Rectangle(image, rect, new Bgr(System.Drawing.Color.Red).MCvScalar);
+                    }
+                    //CvInvoke.Imshow(name, image);
+                    image.Bitmap.Save(screenRecorder.uniqueFilename(1920, 1080));
                 }
-                CvInvoke.Imshow(name, image);
+                else
+                {
+                    //Log through Logger class
+                }
             }
         }
     }
@@ -147,18 +157,24 @@ public class OpenCV : MonoBehaviour
         UnityEngine.Debug.Log(System.String.Format("Stop Sign Detection time: {0} milli-seconds", watch.Elapsed.TotalMilliseconds));
 
         Point startPoint = new Point(10, 10);
-
-        for (int i = 0; i < stopSignList.Count; i++)
+        if (!TextLog)
         {
-            Rectangle rect = stopSignBoxList[i];
-            AddLabelAndImage(
-               ref startPoint,
-               System.String.Format("Stop Sign [{0},{1}]:", rect.Location.Y + rect.Width / 2, rect.Location.Y + rect.Height / 2),
-               stopSignList[i]);
-            CvInvoke.Rectangle(image, rect, new Bgr(System.Drawing.Color.Aquamarine).MCvScalar, 2);
+            for (int i = 0; i < stopSignList.Count; i++)
+            {
+                Rectangle rect = stopSignBoxList[i];
+                AddLabelAndImage(
+                   ref startPoint,
+                   System.String.Format("Stop Sign [{0},{1}]:", rect.Location.Y + rect.Width / 2, rect.Location.Y + rect.Height / 2),
+                   stopSignList[i]);
+                CvInvoke.Rectangle(image, rect, new Bgr(System.Drawing.Color.Aquamarine).MCvScalar, 2);
+            }
+            image.Bitmap.Save(screenRecorder.uniqueFilename(1920, 1080));
+            //CvInvoke.Imshow(name, image);
         }
-
-        CvInvoke.Imshow(name, image);
+        else
+        {
+            //Log through Logger class
+        }
     }
 
     private void AddLabelAndImage(ref Point startPoint, System.String labelText, IImage image)
