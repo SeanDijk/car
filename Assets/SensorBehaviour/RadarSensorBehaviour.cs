@@ -51,7 +51,7 @@ public class RadarSensorBehaviour : AbstractSensorBehaviour
             var collider = currentVisableColliders[i];
 
             var position = PositionHelper.GetRelativePosition(car.transform, collider);
-            if (position == PositionHelper.POSITION_FRONT && PositionHelper.IsCloseTo(car.transform, collider, 15f))
+            if (position == PositionHelper.POSITION_FRONT && PositionHelper.IsCloseTo(car.transform, collider, 45f))
                 objectInFrontOfCar = true;
             if (position == PositionHelper.POSITION_FRONT_LEFT)
                 objectLeftFront = true;

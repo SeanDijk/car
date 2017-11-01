@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Delft3D.unity
+- path: C:/Users/Sean/Documents/car/Assets/Delft3D.unity
   isLoaded: 1
   isActive: 1

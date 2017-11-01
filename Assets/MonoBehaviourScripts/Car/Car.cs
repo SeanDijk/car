@@ -7,7 +7,7 @@ public class Car : MonoBehaviour
 {
     public readonly float MAX_TORQUE_FW = 80f;
     public readonly float MAX_TORQUE_BW = 80f;
-    public readonly float MAX_TORQUE_BRAKE = 8f * 80f;
+    public readonly float MAX_TORQUE_BRAKE = 12f * 80f;
     public readonly float MAX_STEER_ANGLE = 45f;
 
     [Header("General")]

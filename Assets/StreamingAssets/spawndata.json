@@ -26,7 +26,7 @@
       "id": 2,
       "obstacle_type": "bicycle",
       "spawnpointData": {
-	    "fixedspawntime": "4",
+	    "fixedspawntime": "1",
 		"randommin": "1",
 		"randommax": "8",
 		"spawntype": "fixed",
@@ -35,13 +35,13 @@
         "z": -724.84
       },
       "triggerboxData": {
-        "x": 259,
+        "x": 410,
         "y": 60,
-        "z": -801,
-        "rotation": 51.089,
-        "scale_x": 374.3673,
+        "z": -815,
+        "rotation": 55,
+        "scale_x": 50,
         "scale_y": 20,
-        "scale_z": 409.8076
+        "scale_z": 80
       }
     },
         {
